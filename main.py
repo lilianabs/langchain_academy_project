@@ -1,27 +1,14 @@
-import os
 import streamlit as st
-from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
-
-load_dotenv()
-
-OPENAI_MODEL = "gpt-3.5-turbo"
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-
-def generate_response(txt):
-    llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model_name=OPENAI_MODEL)
-    result = llm.predict(txt)
-    return result
+from vegetarian_food_advice.generate_recipes import generate_response
     
 st.set_page_config(page_title='🦜🔗 Vegetarian Food Advice')
 st.title('🦜🔗 Vegetarian Food Advice App')
 
-
 result = []
-with st.form('summarize_form'):
+with st.form('generate_avice'):
     # Text input
-    txt_input = st.text_area('Enter your text', '', height=200)
-    submitted = st.form_submit_button('Submit')
+    txt_input = st.text_area('Enter your text', '', height=80)
+    submitted = st.form_submit_button('Generate')
     if submitted:
         with st.spinner('Calculating...'):
             response = generate_response(txt_input)

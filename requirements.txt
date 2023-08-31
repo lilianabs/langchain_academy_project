@@ -1,3 +1,7 @@
-dotenv==1.0.0
+python-dotenv
 openai==0.27.9
 langchain==0.0.273
+pickle5==0.0.11
+streamlit
+pandas==1.5.1
+altair<5
